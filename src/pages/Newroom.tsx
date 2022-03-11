@@ -54,7 +54,7 @@ export function Newroom() {
               }}
               value={newRoom}
             />
-            <Button type="submit" className="create-room">
+            <Button type="submit" id="create-room">
               Criar sala
             </Button>
           </form>
