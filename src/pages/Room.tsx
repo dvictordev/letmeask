@@ -75,7 +75,11 @@ export function Room() {
               para enviar uma pergunta, <button>faça seu login</button>.
             </p>
 
-            <Button onClick={handleCreateQuestion} className="room-btn">
+            <Button
+              onClick={handleCreateQuestion}
+              className="room-btn"
+              disabled={!user}
+            >
               Enviar pergunta
             </Button>
           </div>
