@@ -1,0 +1,42 @@
+.room-code-btn {
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-radius: 8px;
+  border: solid 1px #835afd;
+
+  background-color: #fff;
+
+  cursor: pointer;
+
+  .copy-box {
+    width: 44px;
+    height: 40px;
+    background-color: #835afd;
+
+    border: 0;
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 10px;
+
+    img {
+      width: 24px;
+      height: 25px;
+    }
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Poppins", sans-serif;
+
+    padding-right: 10px;
+  }
+}

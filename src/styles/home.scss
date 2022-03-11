@@ -1,0 +1,153 @@
+#page-auth {
+  display: flex;
+  align-items: stretch;
+  height: 100vh;
+
+  aside {
+    display: flex;
+    flex-direction: column;
+
+    text-align: left;
+    background-color: #835afd;
+    flex: 7;
+
+    padding: 38px 46px;
+
+    img {
+      max-width: 320px;
+      padding-bottom: 16px;
+    }
+
+    strong {
+      font-size: 36px;
+      font-family: "Roboto", sans-serif;
+      font-weight: 700;
+      color: #fff;
+      line-height: 42px;
+    }
+
+    p {
+      font-size: 24px;
+      font-weight: 400;
+      font-family: "Roboto", sans-serif;
+      line-height: 32px;
+      color: #f8f8f8;
+      opacity: 0.7;
+      margin-top: 16px;
+    }
+  }
+
+  main {
+    flex: 8;
+    display: flex;
+
+    padding: 0 32px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 320px;
+
+    justify-content: center;
+
+    > img {
+      align-self: center;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      margin: 0 auto;
+      font-size: 24px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;
+      padding-bottom: 16px;
+    }
+
+    .logInGoogle {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+
+      width: 100%;
+      padding: 13px 0;
+      height: 50px;
+
+      border-radius: 8px;
+      border: 1px solid #ea4335;
+
+      color: #fff;
+
+      cursor: pointer;
+      background-color: #ea4335;
+    }
+
+    .separator {
+      display: flex;
+      align-items: center;
+      // justify-content: space-evenly;
+      color: #a8a8b3;
+
+      margin: 16px 0 16px 0;
+
+      &::before {
+        display: flex;
+        flex: 1;
+        content: " ";
+        width: 50px;
+        margin-right: 10px;
+        height: 1px;
+        background-color: #a8a8b3;
+      }
+
+      &::after {
+        display: flex;
+        flex: 1;
+        content: " ";
+        width: 50px;
+        margin-left: 10px;
+        height: 1px;
+        background-color: #a8a8b3;
+      }
+    }
+
+    .roomCode {
+      width: 100%;
+      padding: 13px 20px;
+      height: 50px;
+
+      margin-bottom: 16px;
+
+      border-radius: 8px;
+      outline: none;
+      border: 1px solid #a8a8b3;
+      color: #000000;
+
+      cursor: pointer;
+
+      background-color: #fff;
+    }
+
+    #home-btn {
+      width: 320px;
+    }
+
+    #logBtnImg {
+      padding-right: 16px;
+    }
+
+    p {
+      margin-top: 16px;
+      color: #737380;
+      font-size: 14px;
+
+      a {
+        color: #e559f9;
+      }
+    }
+  }
+}
