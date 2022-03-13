@@ -1,6 +1,6 @@
 import { Button } from "../components/Button";
 import { RoomCode } from "../components/RoomCode";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { database, ref, onValue, push } from "../services/firebase";
 import { useParams } from "react-router-dom";
 
@@ -21,8 +21,16 @@ export function Room() {
   };
 
   const params = useParams<paramsType>();
-
   const roomId = params.id;
+
+  useEffect(() => {
+    const roomRef = ref(database, `rooms/${roomId}/`);
+
+    onValue(roomRef, (room) => {
+      const parsedQuestions = Object.entries(room.val().questions);
+      console.log(parsedQuestions);
+    });
+  }, [roomId]);
 
   async function handleCreateQuestion(event: FormEvent) {
     event.preventDefault();
@@ -71,9 +79,16 @@ export function Room() {
           ></textarea>
 
           <div className="form-footer">
-            <p>
-              para enviar uma pergunta, <button>faça seu login</button>.
-            </p>
+            {user ? (
+              <div className="user-info">
+                <img src={user.avatar} alt={user.name} />
+                <span>{user.name}</span>
+              </div>
+            ) : (
+              <span>
+                para enviar uma pergunta, <button>faça seu login</button>.
+              </span>
+            )}
 
             <Button
               onClick={handleCreateQuestion}
@@ -84,8 +99,6 @@ export function Room() {
             </Button>
           </div>
         </form>
-
-        <div className="question"></div>
       </main>
     </div>
   );
