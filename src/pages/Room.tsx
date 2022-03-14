@@ -9,15 +9,39 @@ import logoImg from "../assets/images/logo.svg";
 import "../styles/room.scss";
 
 import { useAuth } from "../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
 
 export function Room() {
-  const navigate = useNavigate();
   const [newQuestion, setNewQuestion] = useState("");
   const { user } = useAuth();
 
+  const [questions, setQuestions] = useState<Questions[]>([]);
+  const [title, setTitle] = useState("");
   type paramsType = {
     id: string;
+  };
+
+  type FirebaseQuestions = Record<
+    string,
+    {
+      author: {
+        name: string;
+        avatar: string;
+      };
+      content: string;
+      isAnswered: boolean;
+      isHighlighted: boolean;
+    }
+  >;
+
+  type Questions = {
+    id: string;
+    author: {
+      name: string;
+      avatar: string;
+    };
+    content: string;
+    isAnswered: boolean;
+    isHighlighted: boolean;
   };
 
   const params = useParams<paramsType>();
@@ -27,8 +51,22 @@ export function Room() {
     const roomRef = ref(database, `rooms/${roomId}/`);
 
     onValue(roomRef, (room) => {
-      const parsedQuestions = Object.entries(room.val().questions);
-      console.log(parsedQuestions);
+      const databaseRoom = room.val();
+      const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {};
+      const parsedQuestions = Object.entries(firebaseQuestions).map(
+        ([key, value]) => {
+          return {
+            id: key,
+            author: value.author,
+            content: value.content,
+            isHighlighted: value.isHighlighted,
+            isAnswered: value.isAnswered,
+          };
+        }
+      );
+
+      setTitle(databaseRoom.title);
+      setQuestions(parsedQuestions);
     });
   }, [roomId]);
 
@@ -57,7 +95,6 @@ export function Room() {
 
     await push(questionsRef, question);
     setNewQuestion("");
-    // navigate(`/rooms/${RoomCode}`);
   }
   return (
     <div id="page-room">
@@ -67,8 +104,10 @@ export function Room() {
         <RoomCode code={roomId} />
       </header>
       <main>
-        <h1>Sala React Q&A</h1>
-
+        <div className="main-header">
+          <h1>Sala {title}</h1>
+          {questions.length > 0 && <span>{questions.length} perguntas</span>}
+        </div>
         <form>
           <textarea
             placeholder="O que voce quer perguntar ?"
@@ -97,6 +136,21 @@ export function Room() {
             >
               Enviar pergunta
             </Button>
+          </div>
+          <div className="questions">
+            {questions.map((element) => (
+              <div className="question">
+                <p>{element.content}</p>
+                <div className="user-info">
+                  <img
+                    id="userImage"
+                    src={element.author.avatar}
+                    alt="user image"
+                  />
+                  <span>{element.author.name}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </form>
       </main>

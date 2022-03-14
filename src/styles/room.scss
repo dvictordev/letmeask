@@ -22,6 +22,29 @@
   main {
     padding: 35px 320px;
 
+    .main-header {
+      display: flex;
+
+      align-items: center;
+
+      h1 {
+        margin-right: 16px;
+      }
+
+      span {
+        width: 112px;
+        height: 32px;
+        background-color: #e559f9;
+
+        border-radius: 51px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: #f8f8f8;
+      }
+    }
+
     h1 {
       font-size: 24px;
       font-weight: 700;
@@ -32,6 +55,8 @@
     form {
       width: 100%;
       height: 160px;
+
+      padding-bottom: 20px;
       textarea {
         width: 100%;
         height: 133px;
@@ -49,7 +74,7 @@
       .form-footer {
         width: 100%;
 
-        margin-top: 16px;
+        padding-top: 16px;
 
         display: flex;
         align-items: center;
@@ -62,6 +87,8 @@
             border-radius: 50%;
             height: 40px;
             width: 40px;
+
+            margin-left: 16px;
           }
 
           > span {
@@ -91,6 +118,44 @@
 
             color: #835afd;
             cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .questions {
+      width: 100%;
+      margin-top: 30px;
+
+      .question {
+        background-color: #fefefe;
+
+        width: 100%;
+        margin-top: 16px;
+
+        padding: 24px;
+
+        box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.04);
+
+        .user-info {
+          display: flex;
+          align-items: center;
+
+          margin-top: 16px;
+
+          #userImage {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+
+            margin-right: 16px;
+          }
+
+          span {
+            color: #737380;
+            font-size: 14px;
+
+            font-weight: 500;
           }
         }
       }
