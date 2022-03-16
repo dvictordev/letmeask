@@ -1,7 +1,7 @@
 import { Button } from "../components/Button";
 import { RoomCode } from "../components/RoomCode";
 import { FormEvent, useEffect, useState } from "react";
-import { database, ref, onValue, push } from "../services/firebase";
+import { database, ref, onValue, push, auth } from "../services/firebase";
 import { useParams } from "react-router-dom";
 
 import logoImg from "../assets/images/logo.svg";
@@ -9,6 +9,7 @@ import logoImg from "../assets/images/logo.svg";
 import "../styles/room.scss";
 
 import { useAuth } from "../hooks/useAuth";
+import { Question } from "../components/Question";
 
 export function Room() {
   const [newQuestion, setNewQuestion] = useState("");
@@ -138,18 +139,12 @@ export function Room() {
             </Button>
           </div>
           <div className="questions">
-            {questions.map((element) => (
-              <div className="question">
-                <p>{element.content}</p>
-                <div className="user-info">
-                  <img
-                    id="userImage"
-                    src={element.author.avatar}
-                    alt="user image"
-                  />
-                  <span>{element.author.name}</span>
-                </div>
-              </div>
+            {questions.map((question) => (
+              <Question
+                key={question.id}
+                content={question.content}
+                author={question.author}
+              />
             ))}
           </div>
         </form>
